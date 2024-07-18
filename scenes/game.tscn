@@ -1,10 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdj8n2wtapocd"]
+[gd_scene load_steps=5 format=3 uid="uid://bdj8n2wtapocd"]
 
 [ext_resource type="PackedScene" uid="uid://cm4kfsn5htxw6" path="res://scenes/player.tscn" id="1_0j0tf"]
+[ext_resource type="Texture2D" uid="uid://dt84h4tbbamw1" path="res://assets/sprites/tileset.png" id="1_l4647"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k3sg7"]
+texture = ExtResource("1_l4647")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_ar267"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_k3sg7")
 
 [node name="Game" type="Node2D"]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_0j0tf")]
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_ar267")
+format = 2
+layer_0/tile_data = PackedInt32Array(131069, 1, 0, 131070, 1, 0, 131071, 1, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 131068, 1, 0, 65539, 65537, 0, 196604, 65537, 0, 196605, 65537, 0, 196606, 65537, 0, 196607, 65537, 0, 131072, 65537, 0, 131073, 65537, 0, 131074, 65537, 0, 131075, 65537, 0, 3, 1, 0, 4, 1, 0, 65540, 65537, 0, 131076, 65537, 0, 5, 65537, 0, -65531, 1, 0, -65530, 65537, 0, -131066, 1, 0, 6, 65537, 0, -131063, 1, 0, -65527, 65537, 0, -65526, 1, 0, 10, 65537, 0, 9, 65537, 0, 65546, 65537, 0, 65545, 65537, 0, 131082, 65537, 0, 131081, 65537, 0, 131083, 65537, 0, 65547, 1, 0, 131078, 65537, 0, 65542, 65537, 0, 65541, 65537, 0, 131077, 65537, 0, 196614, 65537, 0, 196613, 65537, 0, 196612, 65537, 0, 196611, 65537, 0, 196610, 65537, 0, 196609, 65537, 0, 196608, 65537, 0, 262143, 65537, 0, 262142, 65537, 0, 262141, 65537, 0, 262140, 65537, 0, 196617, 65537, 0, 196618, 65537, 0, 196619, 65537, 0, 196620, 65537, 0, 196621, 65537, 0, 131084, 65537, 0, 131085, 65537, 0, 1, 131073, 0, -65533, 131073, 0, 65533, 131073, 0, 65532, 131073, 0)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_0j0tf")]
+position = Vector2(-1, -7)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(1, 7)
+zoom = Vector2(2, 2)
+limit_bottom = 80

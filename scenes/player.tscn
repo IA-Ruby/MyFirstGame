@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cm4kfsn5htxw6"]
+[gd_scene load_steps=33 format=3 uid="uid://cm4kfsn5htxw6"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_yq662"]
 [ext_resource type="Texture2D" uid="uid://vv3nhcicg5o0" path="res://assets/sprites/slime.png" id="2_r2wf8"]
@@ -11,18 +11,6 @@ region = Rect2(0, 0, 32, 32)
 atlas = ExtResource("2_r2wf8")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dvpog"]
-atlas = ExtResource("2_r2wf8")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bcv1l"]
-atlas = ExtResource("2_r2wf8")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qjvhr"]
-atlas = ExtResource("2_r2wf8")
-region = Rect2(96, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ldnvn"]
 atlas = ExtResource("2_r2wf8")
 region = Rect2(128, 0, 32, 32)
@@ -34,10 +22,6 @@ region = Rect2(160, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_n3fgl"]
 atlas = ExtResource("2_r2wf8")
 region = Rect2(192, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hrd7o"]
-atlas = ExtResource("2_r2wf8")
-region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kdwyu"]
 atlas = ExtResource("2_r2wf8")
@@ -146,15 +130,6 @@ animations = [{
 "texture": SubResource("AtlasTexture_8el5f")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dvpog")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bcv1l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qjvhr")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_ldnvn")
 }, {
 "duration": 1.0,
@@ -162,9 +137,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_n3fgl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hrd7o")
 }],
 "loop": true,
 "name": &"Iddle2",
@@ -258,8 +230,7 @@ script = ExtResource("1_yq662")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_k3wem")
-animation = &"walk"
-frame_progress = 0.753962
+animation = &"Iddle2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 6)

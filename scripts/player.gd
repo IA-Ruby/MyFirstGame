@@ -16,10 +16,11 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		animated_sprite_2d.play("JumpStart")
+	if Input.is_action_pressed("jump") and is_on_floor():
+		if animated_sprite_2d.animation != "JumpStart":
+			animated_sprite_2d.play("JumpStart")
 		
-	if Input.is_action_just_released("ui_accept") and is_on_floor():
+	if Input.is_action_just_released("jump") and is_on_floor():
 		animated_sprite_2d.play("Jump")
 		velocity.y = JUMP_VELOCITY
 		landing = true
@@ -29,19 +30,24 @@ func _physics_process(delta):
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
+	var direction = Input.get_axis("left", "right")
 		
 	if direction > 0:
 		animated_sprite_2d.flip_h = false
 	elif direction < 0:
 		animated_sprite_2d.flip_h = true
 	
-	if direction and not Input.is_action_pressed("ui_accept"):
+	if direction and animated_sprite_2d.animation != "JumpStart":
 		velocity.x = direction * SPEED
 		if landing == false and animated_sprite_2d.animation != "HitGround": 
 			animated_sprite_2d.play("walk")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		
-
 	move_and_slide()
+
+func _on_animated_sprite_2d_animation_finished():
+	if animated_sprite_2d.animation == "HitGround":
+		animated_sprite_2d.play("Iddle")
+	if animated_sprite_2d.animation == "walk":
+		animated_sprite_2d.play("Iddle")

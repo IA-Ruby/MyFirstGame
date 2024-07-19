@@ -255,7 +255,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tda0f")
 }],
-"loop": true,
+"loop": false,
 "name": &"walk",
 "speed": 10.0
 }]
@@ -269,7 +269,7 @@ script = ExtResource("1_yq662")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_k3wem")
-animation = &"HitGround"
+animation = &"walk"
 autoplay = "Iddle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

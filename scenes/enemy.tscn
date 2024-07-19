@@ -1,0 +1,84 @@
+[gd_scene load_steps=10 format=3 uid="uid://deylgf0t8ij8e"]
+
+[ext_resource type="Texture2D" uid="uid://x50yy3nolno6" path="res://assets/sprites/slime2.png" id="1_8d3ad"]
+[ext_resource type="PackedScene" uid="uid://dgq1or5arxk5j" path="res://scenes/killzone.tscn" id="2_2q2ae"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovjec"]
+atlas = ExtResource("1_8d3ad")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7yar"]
+atlas = ExtResource("1_8d3ad")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wp6p"]
+atlas = ExtResource("1_8d3ad")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxvg6"]
+atlas = ExtResource("1_8d3ad")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7w2mh"]
+atlas = ExtResource("1_8d3ad")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_50wri"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovjec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7yar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wp6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxvg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7w2mh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxvg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wp6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7yar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovjec")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3u3hc"]
+radius = 8.06226
+
+[node name="Enemy" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_50wri")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.462947
+
+[node name="Killzone" parent="." instance=ExtResource("2_2q2ae")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(1, 8)
+shape = SubResource("CircleShape2D_3u3hc")
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(1, 8)
+target_position = Vector2(12, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(1, 8)
+target_position = Vector2(-12, 0)

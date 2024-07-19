@@ -3,7 +3,7 @@ extends CharacterBody2D
 const SPEED = 150.0
 const JUMP_VELOCITY = -400.0
 
-@onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var animated_sprite = $AnimatedSprite2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -16,15 +16,15 @@ func _physics_process(delta):
 	
 	# Handle jump.
 	if Input.is_action_pressed("jump") and is_on_floor():
-		if animated_sprite_2d.animation != "JumpStart":
-			animated_sprite_2d.play("JumpStart")
+		if animated_sprite.animation != "JumpStart":
+			animated_sprite.play("JumpStart")
 		
 	if Input.is_action_just_released("jump") and is_on_floor():
-		animated_sprite_2d.play("Jump")
+		animated_sprite.play("Jump")
 		velocity.y = JUMP_VELOCITY
 		landing = true
 	elif is_on_floor() and landing == true:
-		animated_sprite_2d.play("HitGround")
+		animated_sprite.play("HitGround")
 		landing = false
 	
 	# Get the input direction and handle the movement/deceleration.
@@ -32,21 +32,21 @@ func _physics_process(delta):
 	var direction = Input.get_axis("left", "right")
 		
 	if direction > 0:
-		animated_sprite_2d.flip_h = false
+		animated_sprite.flip_h = false
 	elif direction < 0:
-		animated_sprite_2d.flip_h = true
+		animated_sprite.flip_h = true
 	
-	if direction and animated_sprite_2d.animation != "JumpStart":
+	if direction and animated_sprite.animation != "JumpStart":
 		velocity.x = direction * SPEED
-		if landing == false and animated_sprite_2d.animation != "HitGround": 
-			animated_sprite_2d.play("walk")
+		if landing == false and animated_sprite.animation != "HitGround": 
+			animated_sprite.play("walk")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		
 	move_and_slide()
 
 func _on_animated_sprite_2d_animation_finished():
-	if animated_sprite_2d.animation == "HitGround":
-		animated_sprite_2d.play("Iddle")
-	if animated_sprite_2d.animation == "walk":
-		animated_sprite_2d.play("Iddle")
+	if animated_sprite.animation == "HitGround":
+		animated_sprite.play("Iddle")
+	if animated_sprite.animation == "walk":
+		animated_sprite.play("Iddle")

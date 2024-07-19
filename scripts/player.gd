@@ -14,11 +14,12 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
-	# Handle jump.
+	# Press jump.
 	if Input.is_action_pressed("jump") and is_on_floor():
 		if animated_sprite.animation != "JumpStart":
 			animated_sprite.play("JumpStart")
-		
+	
+	# Release jump
 	if Input.is_action_just_released("jump") and is_on_floor():
 		animated_sprite.play("Jump")
 		velocity.y = JUMP_VELOCITY
@@ -31,11 +32,13 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("left", "right")
 		
+	# Flip sprite
 	if direction > 0:
 		animated_sprite.flip_h = false
 	elif direction < 0:
 		animated_sprite.flip_h = true
 	
+	# Movement
 	if direction and animated_sprite.animation != "JumpStart":
 		velocity.x = direction * SPEED
 		if landing == false and animated_sprite.animation != "HitGround": 

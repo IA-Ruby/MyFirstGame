@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bdj8n2wtapocd"]
+[gd_scene load_steps=18 format=3 uid="uid://bdj8n2wtapocd"]
 
 [ext_resource type="PackedScene" uid="uid://cm4kfsn5htxw6" path="res://scenes/player.tscn" id="1_0j0tf"]
 [ext_resource type="Texture2D" uid="uid://dt84h4tbbamw1" path="res://assets/sprites/tileset.png" id="1_l4647"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dgq1or5arxk5j" path="res://scenes/killzone.tscn" id="5_7mhqh"]
 [ext_resource type="PackedScene" uid="uid://deylgf0t8ij8e" path="res://scenes/enemy.tscn" id="6_r04dm"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="7_5b46e"]
+[ext_resource type="FontFile" uid="uid://b5vr41tnm0swj" path="res://assets/fonts/m5x7.ttf" id="8_5ft71"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k3sg7"]
 texture = ExtResource("1_l4647")
@@ -198,3 +199,13 @@ shape = SubResource("WorldBoundaryShape2D_fu2vu")
 [node name="Enemy" parent="." instance=ExtResource("6_r04dm")]
 position = Vector2(368, -304)
 script = ExtResource("7_5b46e")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -96.0
+offset_top = -48.0
+offset_right = 108.0
+offset_bottom = -22.0
+theme_override_fonts/font = ExtResource("8_5ft71")
+theme_override_font_sizes/font_size = 32
+text = "Hi, have a nice day!"
+vertical_alignment = 1
